@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Admin</h1>
+        <table>
+            <h2>{{gen_get}}</h2>
+            <thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Is Admin</th></tr></thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    {% if user.is_admin == 1 %}
+                    <td>True</td>
+                    {% else %}
+                    <td>False</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <h2> User Management </h2>
+    <form action="" method="post">
+
+        <select id="admin_choice" name="admin_choice">
+            {% for item in tester_form.admin_choice %}
+                <option val="{{item}}"></option>
+            {% endfor %}
+        </select>
+        <p> By </p>
+        <select id="choices" name="choices">
+            {% for c_item in tester_form.choices %}
+            <option val="{{c_item}}"></option>
+            {% endfor %}
+        </select>
+        <p> {{ tester_form.filter_val() }} </p> 
+        <p> {{ tester_form.submit() }} </p>
+    </form> 
+    {% endblock %}
