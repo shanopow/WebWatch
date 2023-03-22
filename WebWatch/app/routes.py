@@ -2,9 +2,8 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, TesterForm
 from app.models import User
 from flask_login import login_user, logout_user, current_user, login_required
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session, make_response
 from werkzeug.urls import url_parse
-
 @app.route('/')
 @app.route('/index')
 @login_required
@@ -88,3 +87,4 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
